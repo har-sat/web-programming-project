@@ -1,0 +1,27 @@
+.
+├── app
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components
+│   ├── AddExpense.tsx
+│   ├── Analytics.tsx
+│   ├── BudgetOverview.tsx
+│   ├── ExpenseList.tsx
+│   ├── footer.tsx
+│   └── ui(form lucide-react)
+├── components.json
+├── folder_structure.txt
+├── hooks
+│   └── use-toast.ts
+├── lib
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+└── tsconfig.json
+
+6 directories, 66 files

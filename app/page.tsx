@@ -29,8 +29,24 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState("analytics");
   const [showChatbot, setShowChatbot] = useState(false);
 
+  function validateExpense(expense) {
+    let sum = 0;
+    expenses.forEach((expense) => {
+      sum += expense.amount;
+    });
+    if (expense.amount < 0) {
+      throw new Error("Amount should be greater than 0");
+    } else if (sum + expense.amount) {
+      throw new Error("Amount Can't exceed the budget");
+    }
+  }
   const addExpense = (expense) => {
-    setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
+    try {
+      validateExpense(expense);
+      setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
+    } catch (e) {
+      alert(`Validation Error: ${e.message}`);
+    }
   };
 
   const deleteExpense = (id: number) => {

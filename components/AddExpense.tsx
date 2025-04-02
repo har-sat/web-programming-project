@@ -33,6 +33,7 @@ export default function AddExpense({ onAddExpense }) {
       date: new Date().toISOString().split("T")[0],
       description: ""
     });
+
   };
 
   return (

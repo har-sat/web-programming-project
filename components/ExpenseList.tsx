@@ -12,7 +12,7 @@ import {
 import { ArrowUpDown, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function ExpenseList({ expenses }) {
+export default function ExpenseList({ expenses, onDeleteExpense }) {
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
@@ -114,8 +114,8 @@ export default function ExpenseList({ expenses }) {
               <TableCell>{expense.description}</TableCell>
               <TableCell className="text-right">₹{expense.amount}</TableCell>
               <TableCell>
-                <button>
-                  <Trash2 color="#f17e70"/>
+                <button onClick={() => onDeleteExpense(expense.id)}>
+                  <Trash2 color="#f17e70" />
                 </button>
               </TableCell>
             </TableRow>

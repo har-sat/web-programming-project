@@ -6,7 +6,13 @@ import ExpenseList from "@/components/ExpenseList";
 import AddExpense from "@/components/AddExpense";
 import BudgetOverview from "@/components/BudgetOverview";
 import Analytics from "@/components/Analytics";
-import { LayoutDashboard, PlusCircle, PieChart, Wallet, MessageCircle } from "lucide-react";
+import {
+  LayoutDashboard,
+  PlusCircle,
+  PieChart,
+  Wallet,
+  MessageCircle,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
@@ -18,20 +24,6 @@ export default function Home() {
       date: "2024-03-20",
       description: "Groceries",
     },
-    {
-      id: 2,
-      amount: 1500,
-      category: "Transportation",
-      date: "2024-03-19",
-      description: "Auto fare",
-    },
-    {
-      id: 3,
-      amount: 5000,
-      category: "Entertainment",
-      date: "2024-03-18",
-      description: "Movie night",
-    },
   ]);
 
   const [currentPage, setCurrentPage] = useState("analytics");
@@ -39,6 +31,11 @@ export default function Home() {
 
   const addExpense = (expense) => {
     setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
+  };
+
+  const deleteExpense = (id: number) => {
+    const newExpenses = expenses.filter((expense) => expense.id !== id);
+    setExpenses(newExpenses);
   };
 
   const navigationItems = [
@@ -53,7 +50,9 @@ export default function Home() {
       case "analytics":
         return <Analytics expenses={expenses} />;
       case "expenses":
-        return <ExpenseList expenses={expenses} />;
+        return (
+          <ExpenseList expenses={expenses} onDeleteExpense={deleteExpense} />
+        );
       case "add":
         return <AddExpense onAddExpense={addExpense} />;
       case "budget":
@@ -68,9 +67,7 @@ export default function Home() {
       {/* Sidebar */}
       <div className="w-64 bg-card border-r border-border">
         <div className="p-6">
-          <h1 className="text-xl font-bold text-primary mb-6">
-            EasyExpenses
-          </h1>
+          <h1 className="text-xl font-bold text-primary mb-6">EasyExpenses</h1>
           <nav className="space-y-2">
             {navigationItems.map((item) => (
               <button
@@ -107,7 +104,6 @@ export default function Home() {
         <span>{showChatbot ? "Close Chat" : "Open Chat"}</span>
       </button>
 
-      {/* Chatbot Frame (Increased Size) */}
       {showChatbot && (
         <div className="fixed bottom-20 right-10 w-[450px] h-[600px] border border-gray-300 bg-white shadow-lg rounded-lg overflow-hidden">
           <iframe

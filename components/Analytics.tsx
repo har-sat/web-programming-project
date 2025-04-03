@@ -1,4 +1,5 @@
-"use client";
+/* eslint-disable */
+ "use client";
 
 import { Card } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";

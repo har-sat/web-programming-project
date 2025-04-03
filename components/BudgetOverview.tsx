@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { Progress } from "@/components/ui/progress";

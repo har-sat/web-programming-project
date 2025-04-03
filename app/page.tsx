@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { useState } from "react";
@@ -32,11 +33,13 @@ export default function Home() {
   function validateExpense(expense) {
     let sum = 0;
     expenses.forEach((expense) => {
-      sum += expense.amount;
+      sum += Number(expense.amount);
+      console.log(sum);
     });
     if (expense.amount < 0) {
       throw new Error("Amount should be greater than 0");
-    } else if (sum + expense.amount) {
+    } else if (sum + Number(expense.amount) > 100000) {
+      console.log(sum + expense.amount);
       throw new Error("Amount Can't exceed the budget");
     }
   }

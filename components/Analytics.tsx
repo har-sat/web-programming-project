@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
  "use client";
 
 import { Card } from "@/components/ui/card";
